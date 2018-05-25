@@ -17,9 +17,9 @@
 		.......
 		详见 ：http://www.runoob.com/jsp/jsp-client-request.html
 
-7. 请求重定向与请求转发的区别：
+7. ☆☆☆☆  请求重定向与请求转发的区别：
 	请求重定向 ：相当于两次请求，是客户端的行为，前一次的请求对象不会保存，地址栏URL会改变  response.sendRedirect( );
-	请求转发： 一次请求 ，是服务器端的行为,转发后请求对象会保存，地址栏URL不会改变，request.getRequestDispatcher( ).forword(req,resp);
+	请求转发： 一次请求 ，是服务器端的行为,转发后请求对象会保存，地址栏URL不会改变，request.getRequestDispatcher( ).forward(req,resp);
 
 8. jsp九大内置对象：out   request   response  session  application 和  Page   pageContext   exception  config
 
@@ -134,3 +134,17 @@
 
      inlcude动作
         动作标签：<jsp:include page="URL" flush="true|false" />
+        其中：page表示要包含的页面  flush指明被包含的页面是否从缓冲区读取(默认是false)。
+
+☆☆☆☆ include指令与include动作的区别：
+                                include指令                                   jsp:include动作
+       语法格式：            <%@ include file="URL".. %>           |     <jsp:include page="URL" ..  />
+       发生作用的时间         页面转换期间                          |      请求期间
+       包含的内容            文件的实际内容(源码)                   |      页面的输出
+       转换成的Servlet       主页面与包含页面转换为一个Servlet       |      主页面和包含页面转换为独立的Servlet
+       编译时间              较慢———资源必须被解析                  |       比较快
+       执行时间                 稍快                               |       较慢，资源每次必须被解析
+
+17. forward 动作
+        语法: <jsp:forward page="URL" />
+            等同于 request.getRequestDispatcher("/url").forward(request,response); 转发
