@@ -60,8 +60,8 @@
 	pageContext对象也包含了传给JSP页面的指令信息，包括缓存信息，ErrorPage URL,页面scope等。
 	PageContext类定义了一些字段，包括PAGE_SCOPE，REQUEST_SCOPE，SESSION_SCOPE， APPLICATION_SCOPE。
 	它也提供了40余种方法，有一半继承自javax.servlet.jsp.JspContext 类。
-	其中一个重要的方法就是removeArribute()，它可接受一个或两个参数。
-	比如，pageContext.removeArribute("attrName")移除四个scope中相关属性，但是下面这种方法只移除特定scope中的相关属性：
+	其中一个重要的方法就是removeAttribute()，它可接受一个或两个参数。
+	比如，pageContext.removeAttribute("attrName")移除四个scope中相关属性，但是下面这种方法只移除特定scope中的相关属性：
 	pageContext.removeAttribute("attrName", PAGE_SCOPE);
 
 		一些方法：
@@ -84,7 +84,7 @@
 	在jsp页面中通常使用jsp动作标签使用javabean
 		1 useBeans
 		2 setProperty
-		3 getproperty   3种动作
+		3 getProperty   3种动作
 
 	<jsp:useBeans>  在jsp页面中实例化或者在指定范围内使用javabean;
 		语法：<jsp:useBean id="标示符" class="java类名"  scope="作用范围" />
@@ -120,7 +120,7 @@
 			2.  public void setValue(String newValue) ;  //  在Cookie创建后 对Cookie进行赋值
 			3.  String getName( ) ;              	 //  	获取 Cookie的名称
 			4.  String getValue( );     	// 	获取Cookie的值
-			5.  int geetMaxAge( );              //          获取Cookie的有效时间，以秒为单位 .
+			5.  int getMaxAge( );              //          获取Cookie的有效时间，以秒为单位 .
 
 15. session 与 Cookie 的差异
             session                      -       Cookie
@@ -145,6 +145,18 @@
        编译时间              较慢———资源必须被解析                  |       比较快
        执行时间                 稍快                               |       较慢，资源每次必须被解析
 
+        ***  页面内容经常变化时 更适合使用 <jsp:include> 动作
+
 17. forward 动作
         语法: <jsp:forward page="URL" />
             等同于 request.getRequestDispatcher("/url").forward(request,response); 转发
+
+18. param动作
+        语法：<jsp:param name="参数名" value="参数值" />
+        常与<jsp:forward>一起使用，作为其子标签。
+            例：<jsp:forward page="..." >
+                        <jsp:param name="email" value="xionger0127@protonmail.com" >
+                </jsp:forward>
+
+19.
+
