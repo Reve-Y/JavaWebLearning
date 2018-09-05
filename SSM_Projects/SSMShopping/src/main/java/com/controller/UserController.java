@@ -68,7 +68,7 @@ public class UserController {
         }
     }
 
-    //  用户注册
+    //  用户登录
     @RequestMapping("login")
     public ModelAndView login(HttpServletRequest request){
         String email = request.getParameter("email");
